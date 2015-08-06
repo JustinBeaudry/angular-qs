@@ -1,4 +1,4 @@
-angularQS
+angular-qs
 =========
 
 Angular query string services module
@@ -31,5 +31,5 @@ angular.module('myApp', ['qsServices']);
 
 ## ROADMAP
 
-`0.1.0` - locationSearch mimic $location.search() and work well as a decorator replacement for $location.search
-`0.1.5` - jsdoc
+* `0.1.0` - locationSearch mimic $location.search() and work well as a decorator replacement for $location.search
+* `0.1.5` - jsdoc
