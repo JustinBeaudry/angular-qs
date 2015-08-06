@@ -1,0 +1,12 @@
+{
+  "framework": "jasmine2",
+  "serve_files": [
+    "node_modules/angular/angular.js",
+    "node_modules/angular-mocks/angular-mocks.js",
+    "dist/angular-qs.js",
+    "test/*.js"
+  ],
+  "launch_in_dev": ["PhantomJS", "Chrome", "Firefox", "Safari"],
+  "launch_in_ci": ["PhantomJS"],
+  "before_tests": "npm run build"
+}
