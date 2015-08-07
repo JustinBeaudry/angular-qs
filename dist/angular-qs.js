@@ -27,7 +27,7 @@ function qsProvider() {
 	};
 
 	// internal angular provider function
-	this.$get = ['$exceptionHandler', '$log', '$httpParamSerializer', function qs($exceptionHandler, $log, $httpParamSerializer) {
+	this.$get = ['$exceptionHandler', '$httpParamSerializer', function qs($exceptionHandler, $httpParamSerializer) {
 
 		return {
 			parse: function parseQS(queryString) {
