@@ -1,10 +1,7 @@
 'use strict';
 
 var fs = require('fs');
-var rimraf = require('rimraf');
 var path = require('path');
-
-
 
 module.exports = function (gulp, plugins) {
 	gulp.task('link', function() {
@@ -12,7 +9,7 @@ module.exports = function (gulp, plugins) {
     if (fs.lstatSync(path.resolve('.git/hooks/pre-push')).isSymbolicLink()) {
       fs.unlinkSync(path.resolve('.git/hooks/pre-push'));
     }
-		fs.symlinkSync('.ci/git/hooks/pre-push', '.git/hooks/pre-push', 'dir');
+		fs.symlinkSync(path.resolve('.ci/git/hooks/pre-push'), path.resolve('.git/hooks/pre-push'), 'dir');
 		plugins.util.log(plugins.util.colors.bold.white('linking complete!'));
   });
 };
