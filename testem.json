@@ -11,6 +11,6 @@
     "test/*.js"
   ],
   "launch_in_dev": ["PhantomJS", "Chrome", "Firefox", "Safari"],
-  "launch_in_ci": ["PhantomJS"],
+  "launch_in_ci": ["PhantomJS", "Firefox"],
   "before_tests": "npm run build"
 }

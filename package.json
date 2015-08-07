@@ -14,8 +14,8 @@
   "author": "Justin Beaudry <beaudry.justin@gmail.com>",
   "scripts": {
     "prepublish": "npm run test-ci",
-    "test": "node_modules/testem/testem.js",
-    "test-ci": "node_modules/testem/testem.js ci",
+    "test": "node_modules/testem/testem.js ci",
+    "tdd": "node_modules/testem/testem.js",
     "build": "node_modules/gulp/bin/gulp.js build"
   },
   "keywords": [

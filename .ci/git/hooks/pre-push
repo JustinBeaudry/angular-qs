@@ -8,7 +8,7 @@ BLDWHT='\033[0;37;1m'     # bold white text
 
 echo 'Running pre-push tests'
 
-npm run test-ci
+npm run test
 
 if [ $? != 0 ];then
   echo ""
