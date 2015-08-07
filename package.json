@@ -13,7 +13,7 @@
   },
   "author": "Justin Beaudry <beaudry.justin@gmail.com>",
   "scripts": {
-    "prepublish": "npm run test-ci",
+    "prepublish": "npm run test",
     "test": "testem ci",
     "tdd": "testem",
     "build": "gulp build"
