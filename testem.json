@@ -1,5 +1,9 @@
 {
   "framework": "jasmine2",
+  "src_files": [
+    "lib/*.js",
+    "test/*.js"
+  ],
   "serve_files": [
     "node_modules/angular/angular.js",
     "node_modules/angular-mocks/angular-mocks.js",
