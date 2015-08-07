@@ -5,6 +5,14 @@ describe('querystring parser and stringifier', function() {
 	// globals
 	var qs;
   var queryString = '?pokemon1=charmander&pokeballs=3&earthBadge=false&water-badge=true';
+  var queryStringSorted = '?' + queryString.slice(1).split('&').sort(function(a, b) {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+  }).join('&');
 
 	beforeEach(module('qsServices'));
 
@@ -33,6 +41,6 @@ describe('querystring parser and stringifier', function() {
 		var _queryString = qs.stringify(queryObject);
 
 		expect(typeof _queryString).toBe('string');
-		expect(_queryString).toBe(queryString);
+		expect(_queryString).toBe(queryStringSorted);
 	});
 });

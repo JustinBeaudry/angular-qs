@@ -27,7 +27,7 @@ function qsProvider() {
 	};
 
 	// internal angular provider function
-	this.$get = ['$exceptionHandler', function qs($exceptionHandler) {
+	this.$get = ['$exceptionHandler', '$log', '$httpParamSerializer', function qs($exceptionHandler, $log, $httpParamSerializer) {
 
 		return {
 			parse: function parseQS(queryString) {
@@ -53,16 +53,7 @@ function qsProvider() {
 					$exceptionHandler('qs.stringify requires an object');
 				}
 
-				var queryString = '?';
-
-				angular.forEach(Object.keys(queryParams), function (queryParam, i) {
-					if (i > 0) {
-						queryString += internals.delimiter;
-					}
-					queryString += (queryParam + '=');
-					queryString += encodeURIComponent(queryParams[queryParam]);
-				});
-				return queryString;
+				return '?' + $httpParamSerializer(queryParams);
 			}
 		};
 	}];
