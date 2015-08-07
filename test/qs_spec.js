@@ -1,6 +1,6 @@
 'use strict';
 
-describe('querystring parser and stringifier', function() {
+describe('qs', function() {
 
 	// globals
 	var qs;
