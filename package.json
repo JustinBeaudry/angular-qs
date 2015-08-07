@@ -1,6 +1,6 @@
 {
   "name": "angular-qs",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "QueryString service for angular with filter and locationSearching, for use without HTML5 mode enabled",
   "main": "dist/angular-qs.min.js",
   "license": "MIT",
