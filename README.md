@@ -1,4 +1,4 @@
-angular-qs
+angular-qs [![Build Status](https://travis-ci.org/JustinBeaudry/angular-qs.svg)](https://travis-ci.org/JustinBeaudry/angular-qs)
 =========
 
 Angular query string services module
@@ -21,7 +21,7 @@ angular.module('myApp', ['qsServices']);
 
 ## Services and Filter
 * `qsProvider`, is injectable into your modules config block, currently only allows setting delimiter.
-* `qs`, the injectable query string parser and 'stringifier' service.
+* `qs`, the injectable query string parser and 'stringifier' service. qs.stringify uses $httpParamSerializer.
 * `locationSearch`, service replacement for $location.search() (which it defaults to if HTML5Mode is enabled), uses $window.location.search if available and a custom href parser if needed
 * `queryStringFilter`, filter for handling the use of query string parameters in angular templates
 
