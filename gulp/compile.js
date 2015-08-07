@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(gulp, plugins) {
-	gulp.task('compile', ['link', 'clean'], function() {
+	gulp.task('compile', ['clean'], function() {
     var iife = '(function(){\n\n\'use strict\';\n\n<%= contents %>\n\n}());\n\n';
 
     var src = gulp.src([

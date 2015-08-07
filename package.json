@@ -15,7 +15,8 @@
   "scripts": {
     "test": "testem ci",
     "tdd": "testem",
-    "build": "gulp build"
+    "build": "gulp build",
+    "build-dev": "gulp link && gulp build"
   },
   "keywords": [
     "qs",
