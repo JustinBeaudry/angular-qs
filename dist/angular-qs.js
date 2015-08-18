@@ -27,7 +27,7 @@ function qsProvider() {
 	};
 
 	// internal angular provider function
-	this.$get = ['$exceptionHandler', '$httpParamSerializer', function qs($exceptionHandler, $httpParamSerializer) {
+	this.$get = ['$log', '$httpParamSerializer', function qs($log, $httpParamSerializer) {
 
 		return {
 			parse: function parseQS(queryString) {
@@ -36,7 +36,8 @@ function qsProvider() {
 				var qsArgs;
 
 				if (!queryString || typeof queryString !== 'string') {
-          $exceptionHandler('qs.parse requires a string');
+          $log.warn('qs.parse requires a string');
+          return {};
 				} else {
 					qsArgs = decodeURIComponent(queryString);
 				}
@@ -50,7 +51,8 @@ function qsProvider() {
 			stringify: function stringifyQS(queryParams) {
 
 				if (!queryParams || typeof queryParams !== 'object') {
-					$exceptionHandler('qs.stringify requires an object');
+					$log.warn('qs.stringify requires an object');
+          return '';
 				}
 
 				return '?' + $httpParamSerializer(queryParams);
@@ -70,10 +72,10 @@ locationSearch.$inject = ['$window', '$location'];
 function locationSearch($window, $location) {
 	function locationSearchService() {
 
-		var search = '', _location, _locationSearch;
+		var searchResults = '', _location, _locationSearch;
 
     if ($location.$$html5) {
-      search = $location.search();
+      searchResults = $location.search();
     } else {
       if ($window.location && $window.location.href) {
         _location = $window.location.href;
@@ -81,15 +83,15 @@ function locationSearch($window, $location) {
 
         if (!$window.location.search) {
           if (angular.isNumber(_locationSearch) && _locationSearch > -1) {
-            search = _location.slice(_locationSearch);
+            searchResults = _location.slice(_locationSearch);
           }
         } else {
-          search = $window.location.search;
+          searchResults = $window.location.search;
         }
       }
     }
 
-		return search;
+		return searchResults;
 	}
 	return locationSearchService;
 }
@@ -108,7 +110,7 @@ function queryStringFilter($exceptionHandler, $log, locationSearch, qs) {
 
 	return function(input, params) {
 
-		var paramsType = Array.isArray(params) ? 'array' : typeof params, out = '';
+		var paramsType = angular.isArray(params) ? 'array' : typeof params, out = '';
 
 		if (!input) {
 			$exceptionHandler('expected an object of key/value pairs');

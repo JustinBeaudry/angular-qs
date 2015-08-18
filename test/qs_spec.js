@@ -20,6 +20,12 @@ describe('qs', function() {
 		qs = _qs_;
 	}));
 
+  it('should return empty object if a string is not passed', function() {
+    var queryObject = qs.parse();
+
+    expect(typeof queryObject).toBe('object');
+  });
+
 	it('should parse a string into an object', function() {
 		var queryObject = qs.parse(queryString);
 
