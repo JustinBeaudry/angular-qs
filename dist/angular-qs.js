@@ -9,70 +9,73 @@ angular.module('qsServices', []);
 
 
 angular
-	.module('qsServices')
-	.provider('qs', qsProvider);
+  .module('qsServices')
+  .provider('qs', qsProvider);
 
 function qsProvider() {
 
-	// defaults to ampersand, W3C recommends support for semicolons
-	var internals = {
-		delimiter: '&'
-	};
+  // defaults to ampersand, W3C recommends support for semicolons
+  var internals = {
+    delimiter: '&'
+  };
 
-	this.delimiter = function (value) {
-		if (value !== '&' || value !== ';') {
-			console.warn('WC3 recommends the use of ampersands or semicolons ONLY!');
-		}
-		internals.delimiter = value;
-	};
+  this.delimiter = function(value) {
+    if (value !== '&' || value !== ';') {
+      console.warn('WC3 recommends the use of ampersands or semicolons ONLY!');
+    }
+    internals.delimiter = value;
+  };
 
-	// internal angular provider function
-	this.$get = ['$log', '$httpParamSerializer', function qs($log, $httpParamSerializer) {
+  // internal angular provider function
+  this.$get = ['$log', '$httpParamSerializer', function qs($log, $httpParamSerializer) {
 
-		return {
-			parse: function parseQS(queryString) {
+    return {
+      parse: function parseQS(queryString) {
 
-				var opts = {};
-				var qsArgs;
+        var opts = {};
+        var qsArgs;
 
-				if (!queryString || typeof queryString !== 'string') {
+        if (!queryString || typeof queryString !== 'string') {
           $log.warn('qs.parse requires a string');
           return {};
-				} else {
-					qsArgs = decodeURIComponent(queryString);
-				}
+        }
+        qsArgs = decodeURIComponent(queryString);
 
-				angular.forEach(qsArgs.substr(1).split(internals.delimiter), function (item) {
-					var a = item.split('=');
-					opts[a[0]] = a[1];
-				});
-				return opts;
-			},
-			stringify: function stringifyQS(queryParams) {
 
-				if (!queryParams || typeof queryParams !== 'object') {
-					$log.warn('qs.stringify requires an object');
+        angular.forEach(qsArgs.substr(1).split(internals.delimiter), function(item) {
+          var a = item.split('=');
+          opts[a[0]] = a[1];
+        });
+        return opts;
+
+      },
+
+      stringify: function stringifyQS(queryParams) {
+
+        if (!queryParams || typeof queryParams !== 'object') {
+          $log.warn('qs.stringify requires an object');
           return '';
-				}
+        }
 
-				return '?' + $httpParamSerializer(queryParams);
-			}
-		};
-	}];
+        return '?' + $httpParamSerializer(queryParams);
+      }
+    };
+  }];
 }
 
 
 
 angular
-	.module('qsServices')
-	.service('locationSearch', locationSearch);
+  .module('qsServices')
+  .service('locationSearch', locationSearch);
 
 locationSearch.$inject = ['$window', '$location'];
 
 function locationSearch($window, $location) {
-	function locationSearchService() {
+  function locationSearchService() {
 
-		var searchResults = '', _location, _locationSearch;
+    var searchResults = '',
+      _location, _locationSearch;
 
     if ($location.$$html5) {
       searchResults = $location.search();
@@ -91,9 +94,13 @@ function locationSearch($window, $location) {
       }
     }
 
-		return searchResults;
-	}
-	return locationSearchService;
+    if (!searchResults || typeof searchResults !== 'string') {
+      searchResults = '';
+    }
+
+    return searchResults;
+  }
+  return locationSearchService;
 }
 
 
