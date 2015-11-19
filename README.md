@@ -23,9 +23,11 @@ angular.module('myApp', ['qsServices']);
 * `qsProvider`, is injectable into your modules config block, currently only allows setting delimiter.
 * `qs`, the injectable query string parser and 'stringifier' service. qs.stringify uses $httpParamSerializer.
 * `locationSearch`, service replacement for $location.search() (which it defaults to if HTML5Mode is enabled), uses $window.location.search if available and a custom href parser if needed
-* `queryStringFilter`, filter for handling the use of query string parameters in angular templates
+* `queryString`, filter for handling the use of query string parameters in angular templates
 
 ## TODO
+* qs.parse should parse a URI and return the parameters
+* queryString filter should have an option to decode/encode parameters
 * locationSearch should be a 'drop-in' replacement for $location.search() for fallbacks when not in html5Mode (this should allow the ability to decorate $location with the custom search if desired)
 * Provide details on each method
 
